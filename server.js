@@ -57,7 +57,16 @@ app.post('/',function(req,res){
 	        console.log(error);
 	        returnMessage = "Error";
 	    }else{
-	        console.log('Message sent!');
+	        console.log('Sending Message...');
+
+	        console.log('The following recipients were accepted:');
+	        console.log(info.accepted);
+	        console.log('The following recipients were rejected:');
+	        console.log(info.rejected);
+
+	        console.log('SMTP response code:');
+	        console.log(info.response);
+	        
 	        returnMessage = "Success";
 	    }
 	});

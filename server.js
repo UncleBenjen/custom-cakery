@@ -30,7 +30,7 @@ var smtpTransport = nodeMailer.createTransport("SMTP",{
 /* == ROUTING == */
 //
 app.get('/', function(req,res){
-	Console.log("\nhttp GET request received");
+	console.log("\nhttp GET request received");
 	res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
 	res.sendfile('./public/index.html');
 });
@@ -39,12 +39,14 @@ app.post('/',function(req,res){
 	console.log("\nhttp POST request received:");
 	console.log(JSON.stringify(req.body));
 	
+	var date = new Date();
+
 	//create mailing options using data passed through ajax call
 	var mailOptions = {
-		to:'sarahs.custom.cakery@gmail.com',
-		cc:req.body.email,
-		subject: req.body.name+" wants to talk about a custom order!",
-		text: "The following message was sent from "+req.body.name+":\n\n'"+req.body.message+"'\n\nReply to: "+req.body.email
+		to:req.body.email,
+		//cc:'sarahs.custom.cakery@gmail.com',
+		subject: "Automatic message from Custom Cakery",
+		text: "Hi "+req.body.name+",\n\n Thanks for taking interest in my custom cake business! Unfortunately, I will be too busy with school to fill any orders :( \nPlease check back next summer when I'm done school! I apologize for any inconvenience I may have caused. \n\nThe following message was automatically sent to my personal email on "+date+":\n'"+req.body.message+"'."
 	};
 
 	var returnMessage = "";
@@ -59,7 +61,6 @@ app.post('/',function(req,res){
 	        returnMessage = "Success";
 	    }
 	});
-	returnMessage = "pass";
 
 	res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
   	res.contentType('json');

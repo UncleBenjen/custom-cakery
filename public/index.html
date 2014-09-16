@@ -34,7 +34,7 @@
 	<!-- Menu -->
 	<nav class="menu" id="theMenu">
 		<div class="menu-wrap">
-			<h1 class="logo"><a href="index.html#home">Custom Cakery</a></h1>
+			<h1 class="logo">Custom Cakery</h1>
 			<i class="fa fa-times menu-close"></i>
 			<a href="#home" class="smoothScroll">Home</a>
 			<a href="#about" class="smoothScroll">About</a>
@@ -196,7 +196,7 @@
 		</div><! --/container -->
 		<div class="container">
 			<div class="row mt centered">
-				<h1>How it Works</h1>
+				<h1>Let's Make Some Cake!</h1>
 				<div class="col-lg-4 proc">
 					<i class="fa fa-globe"></i>
 					<h3>Contact Me</h3>
@@ -291,13 +291,13 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<h1>Contact Me Right Now!</h1>
-					<p>Give me a call, email, or fill out your information below and I promise to get back to you as soon as possible to discuss your custom-cake-needs!</p>
+					<p>Give me an email or fill out your information here, and I promise to get back to you as soon as possible to discuss your custom-cake-needs!</p>
 					
 					<hr>
 					
 					<p>
 						<small>
-						Email: sarahs.custom.cakery@gmail.com<br/></small>
+						Email: sarahs.custom.cakery@gmail.com</small>
 						
 					</p>
 			
@@ -311,7 +311,7 @@
 
 					<div id="form-messages">
 						<h1>Message Sent.</h1>
-						<p>Thanks for contacting me, an automated copy of your message has been sent to your email address. I'll be emailing you as soon as possible so check your inbox soon!</p>
+						<p>Thanks for contacting me, an automated message has been sent to your email address.</p>
 					</div>
 
 					<form role="form" method="post" id="contactform">
@@ -355,11 +355,8 @@
 		
 		<script type="text/javascript">
       $(function() {
-        //    fancybox
-          jQuery(".fancybox").fancybox({
-          	'transitionIn':'elastic',
-          	'transitionOut':'none'
-          });
+        //fancybox
+        jQuery(".fancybox").fancybox();
       });
 	   </script>
 	   <script type="text/javascript">
@@ -389,6 +386,7 @@
 		   			//set up ajax call
 		   			$.ajax({
 		   				url:'http://54.68.111.160:3000/',
+		   				//url:'http://127.0.0.1:3000/',
 		   				type:'POST',
 		   				contentType:'application/json',
 		   				data: JSON.stringify(data),
@@ -401,6 +399,7 @@
 		   				console.log(response);
 		   				//fade in the envelope id; once complete add animation class
 		   				$('#envelope').fadeIn(function(){
+		   					//apply 'zoom' animation to envelope
 		   					$('#envelope').addClass('animated zoomOutRight');
 		   					//once animation is complete, hide the div and fade in the message
 		   					$('#envelope').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){

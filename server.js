@@ -1,14 +1,15 @@
-// SIMPLE & STRAIGHTFORWARD SINGLE-PAGE NODE SERVER
+// A SIMPLE SINGLE-PAGE NODE SERVER
 // Written by Ben Speir.
 
-//required modules
+/* == REQUIRED MODULES == */
 var http = require('http'),
 	express = require('express'),
 	bodyParser = require('body-parser'),
-	nodeMailer = require('nodemailer');
+	nodeMailer = require('nodemailer'),
+	emailExistence = require('email-existence');
 
 
-/* == APP CONFIGURATION == */
+/* == EXPRESS CONFIGURATION == */
 var app = express();
 app.configure(function(){
 	app.set('port',process.env.PORT || 3000);
@@ -19,7 +20,7 @@ app.configure(function(){
 
 /* == NODEMAILER CONFIGURATION == */
 //Setting up stmp transtport object to send messages from robot account
-var smtpTransport = nodeMailer.createTransport("SMTP",{
+var transporter = nodeMailer.createTransport({
    service: "Gmail",
    auth: {
        user: "sarahs.custom.cakery@gmail.com",
@@ -39,6 +40,7 @@ app.post('/',function(req,res){
 	console.log("\nhttp POST request received:");
 	console.log(JSON.stringify(req.body));
 	
+	//create and initialize a date object for future reference
 	var date = new Date();
 
 	//create mailing options using data passed through ajax call
@@ -46,32 +48,44 @@ app.post('/',function(req,res){
 		to:req.body.email,
 		//cc:'sarahs.custom.cakery@gmail.com',
 		subject: "Automatic message from Custom Cakery",
-		text: "Hi "+req.body.name+",\n\n Thanks for taking interest in my custom cake business! Unfortunately, I will be too busy with school to fill any orders :( \nPlease check back next summer when I'm done school! I apologize for any inconvenience I may have caused. \n\nThe following message was automatically sent to my personal email on "+date+":\n'"+req.body.message+"'."
+		text: "Hi "+req.body.name+",\n\n\tThanks for taking interest in my custom cake business! Unfortunately, I will be too busy with school to fill any orders :( \nPlease check back next summer when I'm done school! I apologize for any inconvenience I may have caused. \n\n\nThe following message was automatically sent to my personal email on "+date+":\n'"+req.body.message+"'."
 	};
 
+	//initialize return message
 	var returnMessage = "";
 
-	
-	smtpTransport.sendMail(mailOptions, function(error, info){
-	    if(error){
-	        console.log(error);
-	        returnMessage = "Error";
-	    }else{
-	        console.log('Sending Message...');
-	        console.log(info);
-	        
-	        console.log('The following recipients were accepted:');
-	        console.log(info.accepted);
-	        console.log('The following recipients were rejected:');
-	        console.log(info.rejected);
+	//Check given email for existance before trying to send
+	console.log('Checking if '+req.body.email+' is valid...');
+	emailExistence.check(req.body.email, function(err,res){
+		//if there was an error notify user/set return message. Do not send email
+		if(err){
+			console.log("An error occurred while checking the email...");
+			console.log(err);
+			returnMessage="Error Checking Email";
+		}
+		//if there was no error, check response... if true send email, if not alert user
+		else{
+			if(res==true){
+				transporter.sendMail(mailOptions, function(error, info){
+				    if(error){
+				        console.log(error);
+				        returnMessage = "SMTP Error";
+				    }else{
+				        console.log('Sending Message...');
+				        console.log(info.response);
 
-	        console.log('SMTP response code:');
-	        console.log(info.messageId);
-
-	        returnMessage = "Success";
-	    }
+				        returnMessage = "Message Sent";
+				    }
+				});
+			}
+			else{
+				console.log("The supplied email does not exist...");
+				returnMessage="Invalid Email";
+			}
+		}
 	});
 
+	//Set header, content-type, and return message to client
 	res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
   	res.contentType('json');
   	res.send(JSON.stringify({message:returnMessage}));

@@ -149,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 	height: 100%;
 }
 
-.menu h1.logo a {
+.menu h1.logo{
 	font-family: "Oswald", sans-serif;
 	font-size: 16px;
 	font-weight: 700;
@@ -158,6 +158,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform: uppercase;
 	color: #ffffff;
 	margin-top: 20px;
+	margin-left: 20px;
 }
 
 .menu h1.logo a:hover {
@@ -241,10 +242,11 @@ h1, h2, h3, h4, h5, h6 {
 	width:100%;
 	bottom:0;
 	display:block;
-	margin-bottom: 20px;
-	line-height: 20px;
+	margin-bottom: 30px;
 }
-
+.developer-info a{
+	line-height: 10px;
+}
 /* Push the body after clicking the menu button */
 .body-push {
 	overflow-x: hidden;

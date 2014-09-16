@@ -41,16 +41,16 @@
 			<a href="#portfolio" class="smoothScroll">Portfolio</a>
 			<a href="#services" class="smoothScroll">Services</a>
 			<a href="#contact" class="smoothScroll">Contact</a>
+
 			<a href="#"><i class="fa fa-facebook"></i></a>
 			<a href="#"><i class="fa fa-twitter"></i></a>
 			<a href="#"><i class="fa fa-instagram"></i></a>
 			<a href="mailto:sarahs.custom.cakery@gamil.com"><i class="fa fa-envelope"></i></a>
 			
 			<div class="developer-info">
-				<p>Developed by Ben Speir.</p>
+				<p>Developed by Ben Speir:</p>
 				<a href="https://github.com/UncleBenjen/custom-cakery/" target="_blank">View on GitHub</a>
 			</div>
-			
 		</div>
 		
 		<!-- Menu button -->
@@ -74,7 +74,7 @@
 			<div class="row">
 				<div class="col-lg-4 name">
 					<div class="circular"></div>
-					<p>My name is Sarah and I have always loved making cakes!</p>
+					<p>My name is Sarah and I've always loved decorating cakes!</p>
 					
 				</div><! --/col-lg-4-->
 				<div class="col-lg-8 name-desc">
@@ -108,7 +108,7 @@
 	<div id="portfoliowrap">
 		<div class="container">
 			<div class="row">
-				<h1>Some of My Latest Works</h1>
+				<h1>Some Examples of My Work</h1>
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
 					<div class="project-wrapper">
 	                    <div class="project">
@@ -205,7 +205,7 @@
 				<div class="col-lg-4 proc">
 					<i class="fa fa-comments"></i>
 					<h3>Discuss Details</h3>
-					<p>Let's chat about what kind of cake you want and when you want it! Describe it as best you can or use a picture as inspiration. Pricing will be arranged based on complexity and size.</p>
+					<p>Let's chat about what kind of cake you want and when you want it! Pricing will be arranged based on complexity and size.</p>
 				</div>
 				<div class="col-lg-4 proc">
 					<i class="fa fa-heart"></i>
@@ -238,7 +238,7 @@
 			</div><! --/row -->
 			
 			
-			<div class="row mt blur">
+			<div class="row mt">
 				<div class="col-lg-3 service">
 					<i class="fa fa-star"></i><p>PREMIUM QUALITY<br/><small>LOREM IPSUM DOLOR</small></p>
 					<p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
@@ -256,7 +256,7 @@
 					<p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
 				</div>
 			</div><! --/row -->
-			<div class="row mt blur">
+			<div class="row mt">
 				<div class="col-lg-3 service">
 					<i class="fa fa-trophy"></i><p>PREMIUM QUALITY<br/><small>LOREM IPSUM DOLOR</small></p>
 					<p class="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
@@ -309,9 +309,13 @@
 						<i id="envelope" class="fa fa-envelope-o fa-5x"></i>
 					</div>
 
-					<div id="form-messages">
+					<div id="success-message" class="form-message">
 						<h1>Message Sent.</h1>
 						<p>Thanks for contacting me, an automated message has been sent to your email address.</p>
+					</div>
+					<div id="failure-message" class="form-message">
+						<h1>Oops! Something Went Wrong...</h1>
+						<p>Our server messed up and your email could not be sent! Please double check the spelling of your email and try again.</p>
 					</div>
 
 					<form role="form" method="post" id="contactform">
@@ -364,7 +368,8 @@
 	   		var form = $('#contactform');
 
 	   		//hide the #form-messages div upon page load
-	   		$('#form-messages').hide();
+	   		$('#success-message').hide();
+	   		$('#failure-message').hide();
 	   		$('#envelope').hide();
 
 	   		//function that runs when the form submit event occurs
@@ -372,6 +377,9 @@
 	   			console.log("Submit button clicked");
 	   			//prevents the default actions taken by this event
 	   			event.preventDefault();
+
+	   			//hide the failure message if its there
+	   			$('#failure-message').fadeOut();
 
 	   			//fade out the form inputs, once complete perform ajax call (smoothes transition between fading)
 	   			$('#contactform').fadeOut(function(){
@@ -385,8 +393,8 @@
 
 		   			//set up ajax call
 		   			$.ajax({
-		   				url:'http://54.68.111.160:3000/',
-		   				//url:'http://127.0.0.1:3000/',
+		   				//url:'http://54.68.111.160:3000/',
+		   				url:'http://127.0.0.1:3000/',
 		   				type:'POST',
 		   				contentType:'application/json',
 		   				data: JSON.stringify(data),
@@ -397,16 +405,31 @@
 		   			})
 		   			.done(function(response){
 		   				console.log(response);
-		   				//fade in the envelope id; once complete add animation class
-		   				$('#envelope').fadeIn(function(){
-		   					//apply 'zoom' animation to envelope
-		   					$('#envelope').addClass('animated zoomOutRight');
-		   					//once animation is complete, hide the div and fade in the message
-		   					$('#envelope').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-		   						$('#envelope').hide();
-		   						$('#form-messages').fadeIn();
-		   					});
-		   				});
+
+		   				//if the response is true, then the email was sent successfully
+		   				if(response.message){
+		   					//fade in the envelope id; once complete add animation class
+			   				$('#envelope').fadeIn(function(){
+			   					//apply 'zoom' animation to envelope
+			   					$('#envelope').addClass('animated zoomOutRight');
+			   					//once animation is complete, hide the div and fade in the message
+			   					$('#envelope').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+			   						$('#envelope').hide();
+			   						$('#success-message').fadeIn();
+			   					});
+			   				});
+		   				}
+		   				//if the response wasnt true then the email didnt send; display error message
+		   				else{
+		   					console.log("failure to post");
+			   				$('#failure-message').fadeIn();
+			   				$('#contactform').fadeIn();
+
+			   				$('#nameInput').val('');
+			   				$('#emailInput').val('');
+			   				$('#messageInput').val('');
+		   				}
+		   				
 
 		   				/*
 		   				$('#nameInput').val('');
@@ -416,7 +439,7 @@
 		   			})
 		   			.fail(function(){
 		   				console.log("failure to post");
-		   				//$('#form-messages').fadeOut();
+		   				$('#failure-message').fadeIn();
 		   				$('#contactform').fadeIn();
 
 		   				$('#nameInput').val('');

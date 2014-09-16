@@ -161,15 +161,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-left: 20px;
 }
 
-.menu h1.logo a:hover {
-	color: #f85c37;
-}
-
-.menu img.logo {
-	margin: 20px 0;
-	max-width: 160px;
-}
-
 .menu a {
 	margin-left: 20px;
 	color: #808080;
@@ -197,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
 	width: 25px;
 	font-size: 14px;
 	line-height: 40px;
-	margin: 25px 2px;
+	margin: 15px 2px;
 }
 
 .menu-close {
@@ -205,13 +196,12 @@ h1, h2, h3, h4, h5, h6 {
 	display: block;
 	position: absolute;
 	font-size: 14px;
-	/*color: #808080;*/
-	color: #DF3D82;*
+	color: #DF3D82;
 	width: 40px;
 	height: 40px;
 	line-height: 40px;
 	top: 20px;
-	right: 20px;
+	right: -7px;
 	-webkit-transition: all .1s ease-in-out;
 	   -moz-transition: all .1s ease-in-out;
 		-ms-transition: all .1s ease-in-out;
@@ -241,11 +231,10 @@ h1, h2, h3, h4, h5, h6 {
 	position:absolute; 
 	width:100%;
 	bottom:0;
-	display:block;
 	margin-bottom: 30px;
 }
 .developer-info a{
-	line-height: 10px;
+	line-height: 15px;
 }
 /* Push the body after clicking the menu button */
 .body-push {
@@ -500,7 +489,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*Form Messages*/
-#form-messages h1, h2, h3{
+.form-message h1, h2, h3{
 	color:#f2f2f2;
 	
 	text-align: left;

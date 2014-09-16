@@ -52,43 +52,66 @@ app.post('/',function(req,res){
 	};
 
 	//initialize return message
-	var returnMessage = "";
+	//var successMessage = false;
 
 	//Check given email for existance before trying to send
 	console.log('Checking if '+req.body.email+' is valid...');
-	emailExistence.check(req.body.email, function(err,res){
+	emailExistence.check(req.body.email, function(err,response){
 		//if there was an error notify user/set return message. Do not send email
 		if(err){
 			console.log("An error occurred while checking the email...");
 			console.log(err);
-			returnMessage="Error Checking Email";
+			var successMessage=false;
+
+			//Set header, content-type, and return message to client
+			res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
+  			res.contentType('json');
+  			res.send(JSON.stringify({message:successMessage}));
 		}
 		//if there was no error, check response... if true send email, if not alert user
 		else{
-			if(res==true){
+			if(response==true){
 				transporter.sendMail(mailOptions, function(error, info){
 				    if(error){
 				        console.log(error);
-				        returnMessage = "SMTP Error";
-				    }else{
+				        var successMessage = false;
+
+				        //Set header, content-type, and return message to client
+						res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
+  						res.contentType('json');
+  						res.send(JSON.stringify({message:successMessage}));
+				    }
+				    else{
 				        console.log('Sending Message...');
 				        console.log(info.response);
 
-				        returnMessage = "Message Sent";
+				        var successMessage = true;
+
+				        //Set header, content-type, and return message to client
+						res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
+  						res.contentType('json');
+  						res.send(JSON.stringify({message:successMessage}));
 				    }
 				});
 			}
 			else{
-				console.log("The supplied email does not exist...");
-				returnMessage="Invalid Email";
+				console.log("The given email does not exist...");
+				var successMessage=false;
+
+				//Set header, content-type, and return message to client
+				res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
+  				res.contentType('json');
+  				res.send(JSON.stringify({message:successMessage}));
 			}
+
+			
 		}
 	});
-
+	/*
 	//Set header, content-type, and return message to client
 	res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
   	res.contentType('json');
-  	res.send(JSON.stringify({message:returnMessage}));
+  	res.send(JSON.stringify({message:successMessage}));*/
 });
 
 /* == SERVER == */

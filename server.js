@@ -6,7 +6,8 @@ var http = require('http'),
 	express = require('express'),
 	bodyParser = require('body-parser'),
 	nodeMailer = require('nodemailer'),
-	emailExistence = require('email-existence');
+	emailExistence = require('email-existence'),
+	async = require('async');
 
 
 /* == EXPRESS CONFIGURATION == */
@@ -52,10 +53,47 @@ app.post('/',function(req,res){
 	};
 
 	//initialize return message
-	//var successMessage = false;
+	//var successMessage = null;
+
 
 	//Check given email for existance before trying to send
 	console.log('Checking if '+req.body.email+' is valid...');
+	
+	
+
+	/*emailExistence.check(req.body.email, function(err,response){
+		//if there was an error notify user/set return message. Do not send email
+		if(err){
+			console.log("An error occurred while checking the email...");
+			console.log(err);
+			successMessage=false;
+		}
+		//if there was no error, check response... if true send email, if not alert user
+		else{
+			if(response==true){
+				transporter.sendMail(mailOptions, function(error, info){
+				    if(error){
+				        console.log(error);
+				        successMessage = false;
+				    }
+				    else{
+				        console.log('Sending Message...');
+				        console.log(info.response);
+
+				        successMessage = true;
+				    }
+				});
+			}
+			else{
+				console.log("The given email does not exist...");
+				successMessage=false;
+			}
+
+			
+		}
+	});*/
+
+	/*
 	emailExistence.check(req.body.email, function(err,response){
 		//if there was an error notify user/set return message. Do not send email
 		if(err){
@@ -106,7 +144,27 @@ app.post('/',function(req,res){
 
 			
 		}
+	});*/
+	
+	checkEmail(req.body.email, function(data, error){
+
+		if(data == true){
+			transporter.sendMail(mailOptions, function(error, info){
+				    if(error){
+				        console.log(error);
+				    }
+				    else{
+				        console.log('Sending Message...');
+				        console.log(info.response);
+				    }
+			});
+		}
+
+		res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
+  		res.contentType('json');
+  		res.send(JSON.stringify({message:data}));
 	});
+
 	/*
 	//Set header, content-type, and return message to client
 	res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
@@ -118,3 +176,35 @@ app.post('/',function(req,res){
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Server is up and running; listening on port '+app.get('port'));
 });
+
+/* == VARIOUS FUNCTIONS == */
+//Function to check email; accepts an email and a callback function
+var checkEmail = function(email, callback){
+	var successMessage = false;
+
+	emailExistence.check(email, function(err,response){
+		//if there was an error notify user/set return message. Do not send email
+		if(err){
+			console.log("An error occurred while checking the email...");
+			console.log(err);
+			successMessage=false;
+
+		}
+		//if there was no error, check response... if true send email, if not alert user
+		else{
+			if(response==true){
+				successMessage=true;
+			}
+			else{
+				console.log("The given email does not exist...");
+				successMessage=false;
+			}
+
+			
+		}
+
+		callback(successMessage, err);
+
+	});
+}
+

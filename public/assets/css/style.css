@@ -43,6 +43,35 @@ textarea {
     text-shadow: none;
 }
 
+
+/* media queries for background images */
+/* SMARTPHONES PORTRAIT */
+@media only screen and (min-width: 300px) {
+}
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (min-width: 480px) {
+}
+
+/* TABLETS PORTRAIT */
+@media only screen and (min-width: 768px) {
+}
+
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (min-width: 1024px) {
+	.contact {
+		background-image: url(../img/contact-sep.jpg);
+	}
+	.about {
+		background-image: url(../img/about-sep.jpg);
+	}
+	.portfolio {
+		background-image: url(../img/portfolio-sep.jpg);
+	}
+
+}    
+
+
 /*
  * A better looking default horizontal rule
  */
@@ -369,9 +398,9 @@ h1, h2, h3, h4, h5, h6 {
 	height: 450px;
 	position: relative;
 }
-.about {
+/*.about {
 	background-image: url(../img/about-sep.jpg);
-}
+}*/
 
 /* Portfolio Wrap Section */
 #portfoliowrap {
@@ -410,9 +439,9 @@ h1, h2, h3, h4, h5, h6 {
 	border-bottom: solid 2px transparent;
 }
 
-.portfolio {
+/*.portfolio {
 	background-image: url(../img/portfolio-sep.jpg);
-}
+}*/
 
 /* Service Wrap */
 #servicewrap {
@@ -472,9 +501,9 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 13px;
 }
 
-.contact {
+/*.contact {
 	background-image: url(../img/contact-sep.jpg);
-}
+}*/
 
 #contactwrap label {
 	color: #f2f2f2;
@@ -495,6 +524,10 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: left;
 }
 
+#waiting-for-server {
+	font-size: 100px;
+	
+}
 
 /* Gallery Configuration */
 .photo-wrapper {

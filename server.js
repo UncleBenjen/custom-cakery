@@ -6,8 +6,7 @@ var http = require('http'),
 	express = require('express'),
 	bodyParser = require('body-parser'),
 	nodeMailer = require('nodemailer'),
-	emailExistence = require('email-existence'),
-	async = require('async');
+	emailExistence = require('email-existence');
 
 
 /* == EXPRESS CONFIGURATION == */

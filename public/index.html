@@ -411,8 +411,8 @@
 
 		   			//set up ajax call
 		   			$.ajax({
-		   				url:'http://www.customcakery.ca/',
-		   				//url:'http://127.0.0.1:3000/',
+		   				//url:'http://www.customcakery.ca/',
+		   				url:'http://127.0.0.1:3000/',
 		   				type:'POST',
 		   				contentType:'application/json',
 		   				data: JSON.stringify(data),
@@ -428,7 +428,7 @@
 		   				console.log(response);
 
 		   				//if the response is true, then the email was sent successfully
-		   				if(response.message){
+		   				if(response.success){
 		   					//fade in the envelope id; once complete add animation class
 			   				$('#envelope').fadeIn(function(){
 			   					//apply 'zoom' animation to envelope after fade is complete

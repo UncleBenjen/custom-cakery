@@ -513,7 +513,6 @@ h1, h2, h3, h4, h5, h6 {
 #contactwrap .fa {
 	color:#f2f2f2;
 	font-size: 150px;
-	padding-top:20px;
 }
 
 
@@ -524,9 +523,9 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: left;
 }
 
-#waiting-for-server {
+#waiting-for-server, #envelope {
 	font-size: 100px;
-	
+	padding-top:25px;
 }
 
 /* Gallery Configuration */

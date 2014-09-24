@@ -60,38 +60,7 @@ app.post('/',function(req,res){
 	
 	
 
-	/*emailExistence.check(req.body.email, function(err,response){
-		//if there was an error notify user/set return message. Do not send email
-		if(err){
-			console.log("An error occurred while checking the email...");
-			console.log(err);
-			successMessage=false;
-		}
-		//if there was no error, check response... if true send email, if not alert user
-		else{
-			if(response==true){
-				transporter.sendMail(mailOptions, function(error, info){
-				    if(error){
-				        console.log(error);
-				        successMessage = false;
-				    }
-				    else{
-				        console.log('Sending Message...');
-				        console.log(info.response);
-
-				        successMessage = true;
-				    }
-				});
-			}
-			else{
-				console.log("The given email does not exist...");
-				successMessage=false;
-			}
-
-			
-		}
-	});*/
-
+	//original implementation; after discovering the bug was in email-existence module it may be that this implementation still works
 	/*
 	emailExistence.check(req.body.email, function(err,response){
 		//if there was an error notify user/set return message. Do not send email
@@ -145,30 +114,45 @@ app.post('/',function(req,res){
 		}
 	});*/
 	
-	checkEmail(req.body.email, function(data, error){
+	checkEmail(req.body.email, function(data, err){
 
-		if(data == true){
+		if(err){
+			console.log("Error returned from check mail function...");
+
+			res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
+  			res.contentType('json');
+  			res.send(JSON.stringify({message:false}));
+		}
+		else if(data == true){
 			transporter.sendMail(mailOptions, function(error, info){
 				    if(error){
 				        console.log(error);
+
+				        res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
+  						res.contentType('json');
+  						res.send(JSON.stringify({message:false}));
 				    }
 				    else{
 				        console.log('Sending Message...');
 				        console.log(info.response);
+
+				        res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
+  						res.contentType('json');
+  						res.send(JSON.stringify({message:true}));
 				    }
 			});
 		}
+		else{
+			console.log("The given email does not exist.");
 
-		res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
-  		res.contentType('json');
-  		res.send(JSON.stringify({message:data}));
-	});
+			res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
+  			res.contentType('json');
+  			res.send(JSON.stringify({message:false}));
+		}
 
-	/*
-	//Set header, content-type, and return message to client
-	res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
-  	res.contentType('json');
-  	res.send(JSON.stringify({message:successMessage}));*/
+		
+	});//end of check email and callback
+
 });
 
 /* == SERVER == */

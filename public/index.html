@@ -294,7 +294,6 @@
 					<div id="envelope" class="centered">
 						<i class="fa fa-envelope-o fa-5x"></i>
 					</div>
-
 					<div id="waiting-for-server" class="centered">
 						<i class="fa fa-cog fa-spin" style="padding-top: 0; padding-bottom:0;"></i>
 					</div>
@@ -340,7 +339,7 @@
 	<script src="assets/js/main.js"></script>
 		<script>
 		$(function(){
-			//find out whether or not the site was loaded through a mobile device
+			//find out whether or not the site was loaded through a mobile device; do not apply stellar if it was (only works on desktop)
 			var isMobile = {
 			    Android: function() {
 			        return navigator.userAgent.match(/Android/i);
@@ -412,8 +411,8 @@
 
 		   			//set up ajax call
 		   			$.ajax({
-		   				//url:'http://www.customcakery.ca/',
-		   				url:'http://127.0.0.1:3000/',
+		   				url:'http://www.customcakery.ca/',
+		   				//url:'http://127.0.0.1:3000/',
 		   				type:'POST',
 		   				contentType:'application/json',
 		   				data: JSON.stringify(data),
@@ -446,18 +445,7 @@
 		   					console.log("failure to post");
 			   				$('#failure-message').fadeIn();
 			   				$('#contactform').fadeIn();
-
-			   				/*
-			   				$('#nameInput').val('');
-			   				$('#emailInput').val('');
-			   				$('#messageInput').val('');*/
 		   				}
-		   				
-
-		   				/*
-		   				$('#nameInput').val('');
-		   				$('#emailInput').val('');
-		   				$('#messageInput').val('');*/
 		   				
 		   			})
 		   			.fail(function(){
@@ -466,10 +454,6 @@
 		   				console.log("failure to post");
 		   				$('#failure-message').fadeIn();
 		   				$('#contactform').fadeIn();
-
-		   				$('#nameInput').val('');
-		   				$('#emailInput').val('');
-		   				$('#messageInput').val('');
 		   			});//end of ajax
 
 	   			});

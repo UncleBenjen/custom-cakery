@@ -43,31 +43,34 @@ textarea {
     text-shadow: none;
 }
 
-
+.contact {
+	background-image: url(../img/contact-sep.jpg);
+}
+.about {
+	background-image: url(../img/about-sep.jpg);
+}
+.portfolio {
+	background-image: url(../img/portfolio-sep.jpg);
+}
 /* media queries for background images */
 /* SMARTPHONES PORTRAIT */
 @media only screen and (min-width: 300px) {
+	
 }
 
 /* SMARTPHONES LANDSCAPE */
 @media only screen and (min-width: 480px) {
+	
 }
 
 /* TABLETS PORTRAIT */
 @media only screen and (min-width: 768px) {
+	
 }
 
 /* TABLET LANDSCAPE / DESKTOP */
 @media only screen and (min-width: 1024px) {
-	.contact {
-		background-image: url(../img/contact-sep.jpg);
-	}
-	.about {
-		background-image: url(../img/about-sep.jpg);
-	}
-	.portfolio {
-		background-image: url(../img/portfolio-sep.jpg);
-	}
+	
 
 }    
 
@@ -163,6 +166,7 @@ h1, h2, h3, h4, h5, h6 {
 	top: 0;
 	z-index: 10;
 	text-align: left;
+
 }
 
 .menu.menu-open {
@@ -176,6 +180,7 @@ h1, h2, h3, h4, h5, h6 {
 	background: #39CCCC;
 	width: 200px;
 	height: 100%;
+
 }
 
 .menu h1.logo{
@@ -261,6 +266,7 @@ h1, h2, h3, h4, h5, h6 {
 	width:100%;
 	bottom:0;
 	margin-bottom: 30px;
+	display:block;
 }
 .developer-info a{
 	line-height: 15px;

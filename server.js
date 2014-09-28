@@ -76,7 +76,7 @@ app.route('/')
 		//Check given email for existance before trying to send
 		console.log('Checking if '+req.body.email+' is valid...');
 
-		emailExistence.check(req.body.email, function(err,response){
+		emailExistence.check(req.body.email, function(err,exists, unsure){
 			//if there was an error notify user/set return message. Do not send email
 			if(err){
 				console.log("An error occurred while checking the email...");
@@ -89,7 +89,8 @@ app.route('/')
 			}
 			//if there was no error, check response... if true send email, if not alert user
 			else{
-				if(response==true){
+				if(exists || unsure){
+					console.log('Email-Existence results:[Exists('+exists+') Unsure('+unsure+')]');
 					transporter.sendMail(mailOptions, function(error, info){
 					    if(error){
 					        console.log(error);

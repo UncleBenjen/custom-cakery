@@ -92,6 +92,9 @@ textarea {
 	text-align: center
 }
 
+.grey {
+	color: #767676;;
+}
 /* circular profile image*/
 .circular {
 	margin:0 auto;
@@ -426,7 +429,9 @@ h1, h2, h3, h4, h5, h6 {
 	color: #000;
 	text-align: center;
 }
-
+#portfoliowrap p {
+	color: #767676;
+}
 .mt {
 	margin-top: 50px;
 }
@@ -478,13 +483,17 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right: 15px;
 	font-size: 30px;
 	vertical-align: middle;
+	color:black;
 }
 
-.service .text {
-	color: #767676
+.service p{
+	color:black;
 }
-
-
+.service p.text{
+	text-align: justify;
+	padding-top:5px;
+	color: #767676;
+}
 
 /* Contact Wrap */
 #contactwrap {

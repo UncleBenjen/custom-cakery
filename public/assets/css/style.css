@@ -78,7 +78,6 @@ textarea {
 /*
  * A better looking default horizontal rule
  */
-
  hr {
     display: block;
     height: 1px;
@@ -133,6 +132,56 @@ textarea {
 	opacity: 100%;
 }
 
+#title {
+
+}
+
+/*make bootstraps button better*/
+.btn-default{
+	border-radius:0px;
+	border-color: #ffffff;
+	border-width: 2px;
+	background-color: rgba(0,0,0,0);
+	color:#f2f2f2;
+
+	-webkit-transition: all 300ms ease; 
+   	-moz-transition: all 300ms; 
+    -o-transition: all 300ms; 
+    transition: all 300ms ease;
+}
+.btn-default:hover{
+border-color: #ffffff;
+	background-color: #f2f2f2;
+	color:#555;
+}
+.form-control{
+	border-radius:0px !important;
+	border-color: #ffffff;
+	border-width: 2px;
+
+	background-color: rgba(0,0,0,0);
+ 	
+	color:#f2f2f2;
+ 	font-size: 16px;
+
+	-webkit-transition: all 100ms ease; 
+   	-moz-transition: all 100ms; 
+    -o-transition: all 100ms; 
+    transition: all 100ms ease;
+}
+.form-control:focus{
+	border-radius:0px !important;
+	border-color: #ffffff;
+	border-width: 2px;
+
+	background-color: #f2f2f2;
+	color:#555;
+
+	-webkit-transition: all 300ms ease; 
+   	-moz-transition: all 300ms; 
+    -o-transition: all 300ms; 
+    transition: all 300ms ease;
+}
 /* ==========================================================================
    General styles
    ========================================================================== */
@@ -273,6 +322,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .developer-info a{
 	line-height: 15px;
+	margin:0;
 }
 /* Push the body after clicking the menu button */
 .body-push {
@@ -404,6 +454,7 @@ h1, h2, h3, h4, h5, h6 {
 	background-attachment: fixed;
 	background-position: 50% 0;
 	background-repeat: no-repeat;
+	background-size: cover;
 	height: 450px;
 	position: relative;
 }
@@ -450,7 +501,44 @@ h1, h2, h3, h4, h5, h6 {
 	border-bottom: solid 2px transparent;
 }
 
-/*.portfolio {
+#ContactMe > i{
+-webkit-transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); 
+   -moz-transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); 
+     -o-transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); 
+        transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); /* ease-in-out */
+
+}
+#ContactMe:hover > i{
+font-size: 55px;
+
+	color:#39CCCC;
+}
+
+#DiscussDetails > i{
+-webkit-transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); 
+   -moz-transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); 
+     -o-transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); 
+        transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); /* ease-in-out */
+
+}
+#DiscussDetails:hover > i{
+font-size: 55px;
+	color:#FF851B;
+}
+
+
+#CakeTime > i{
+-webkit-transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); 
+   -moz-transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); 
+     -o-transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); 
+        transition: all 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000); /* ease-in-out */
+
+}
+#CakeTime:hover > i{
+font-size: 55px;
+	color:#a4003a;
+}
+/*.portfolio {#a4003a
 	background-image: url(../img/portfolio-sep.jpg);
 }*/
 
@@ -540,10 +628,19 @@ h1, h2, h3, h4, h5, h6 {
 
 #waiting-for-server, #envelope {
 	font-size: 100px;
-	padding-top:25px;
+	/*padding-top:25px;*/
+	padding-top: 0; 
+	padding-bottom:0;
 }
 
 /* Gallery Configuration */
+.photo{
+	-webkit-transition: all 200ms cubic-bezier(0.420, 0.000, 1.000, 1.000); 
+   -moz-transition: all 200ms cubic-bezier(0.420, 0.000, 1.000, 1.000); 
+     -o-transition: all 200ms cubic-bezier(0.420, 0.000, 1.000, 1.000); 
+        transition: all 200ms cubic-bezier(0.420, 0.000, 1.000, 1.000);/* ease-in */
+}
+
 .photo-wrapper {
   display: block;
   position: relative;
@@ -553,6 +650,8 @@ h1, h2, h3, h4, h5, h6 {
   -moz-transition: background-color 0.4s;
   -o-transition: background-color 0.4s;
   transition: background-color 0.4s;
+
+
 }
 .project .overlay {
   position: absolute;

@@ -23,10 +23,11 @@ app.use(express.static(__dirname + '/public',options));
 app.use(bodyParser.json());
 
 
+
 /* == NODEMAILER CONFIGURATION == */
 //Setting up stmp transtport object to send messages from robot account
 var transporter = nodeMailer.createTransport({
-   service: "Gmail",
+   service: "gmail",
    auth: {
        user: "sarahs.custom.cakery@gmail.com",
        pass: "cupc4kes"

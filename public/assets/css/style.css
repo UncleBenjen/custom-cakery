@@ -320,10 +320,11 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 30px;
 	display:block;
 }
-.developer-info a{
+.developer-info p a{
 	line-height: 15px;
 	margin:0;
 }
+
 /* Push the body after clicking the menu button */
 .body-push {
 	overflow-x: hidden;

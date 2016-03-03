@@ -55,23 +55,30 @@ textarea {
 /* media queries for background images */
 /* SMARTPHONES PORTRAIT */
 @media only screen and (min-width: 300px) {
-	
+	#headerwrap h1{
+		font-size: 80px !important;
+	}
 }
 
 /* SMARTPHONES LANDSCAPE */
 @media only screen and (min-width: 480px) {
-	
+	#headerwrap h1{
+		font-size: 80px !important;
+	}
 }
 
 /* TABLETS PORTRAIT */
 @media only screen and (min-width: 768px) {
-	
+	#headerwrap h1{
+		font-size: 100px !important;
+	}	
 }
 
 /* TABLET LANDSCAPE / DESKTOP */
 @media only screen and (min-width: 1024px) {
-	
-
+	#headerwrap h1{
+		font-size: 100px !important;
+	}	
 }    
 
 
@@ -189,6 +196,8 @@ border-color: #ffffff;
 html,
 body {
     height: 100%;
+    width:100%;
+    overflow-x:hidden; 
 }
 
 body {
@@ -457,6 +466,7 @@ h1, h2, h3, h4, h5, h6 {
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 450px;
+	width:100vw;
 	position: relative;
 }
 /*.about {

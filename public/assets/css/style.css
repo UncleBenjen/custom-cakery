@@ -462,7 +462,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Separator About - Parallax Section */
 .sep {
 	background-attachment: fixed;
-	background-position: 50% 0 !important;
+	background-position: 50% 0;
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 450px;

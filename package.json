@@ -8,9 +8,9 @@
     "email":"benjaminspeir@gmail.com"
   },
   "dependencies": {
-    "express": "4.x",
-    "body-parser":"1.6.5",
-    "nodemailer":"1.*.*",
+    "express": "^4.x",
+    "body-parser":"^1.6.5",
+    "nodemailer":"^1.*.*",
     "email-existence":"*"
   }
 }

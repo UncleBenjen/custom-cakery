@@ -56,7 +56,7 @@ app.route('/')
 				res.status(err.status).end();
 			}
 			else{
-				console.log('Index.html sent successfully');
+				//console.log('Index.html sent successfully');
 			}
 		});
 	})
@@ -80,7 +80,7 @@ app.route('/')
 		emailExistence.check(req.body.email, function(err,exists, unsure){
 			//if there was an error notify user/set return message. Do not send email
 			if(err){
-				console.log("An error occurred while checking the email...");
+				//console.log("An error occurred while checking the email...");
 				console.log(err);
 
 				//Set header, content-type, and return message to client
@@ -102,8 +102,8 @@ app.route('/')
 	  						res.send(JSON.stringify({success:false}));
 					    }
 					    else{
-					        console.log('Sending Message...');
-					        console.log(info.response);
+					        //console.log('Sending Message...');
+					        //console.log(info.response);
 
 					        //Set header, content-type, and return message to client
 							//res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
@@ -113,7 +113,7 @@ app.route('/')
 					});
 				}
 				else{
-					console.log("The given email does not exist...");
+					//console.log("The given email does not exist...");
 
 					//Set header, content-type, and return message to client
 					//res.header('Access-Control-Allow-Origin', "*") //Cross domain compatibility
